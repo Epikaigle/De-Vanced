@@ -18,6 +18,24 @@ internal object GooglePlayUtilityFingerprint : Fingerprint(
     )
 )
 
+/**
+ * Matches `GooglePlayServicesUtilLight.isGooglePlayServicesAvailable(Context, int)`.
+ *
+ * Google Photos uses this bundled availability check while restoring the active account. The
+ * check rejects GmsCore's non-Google signature with `SERVICE_INVALID`, even though GmsCore has
+ * already returned the account successfully.
+ *
+ * Ported from ReVanced commit 7657187976d0a78df88fe5676632ef706f4924e4.
+ */
+internal object IsGooglePlayServicesAvailableFingerprint : Fingerprint(
+    returnType = "I",
+    parameters = listOf("L", "I"),
+    strings = listOf(
+        "com.google.android.gms.version",
+        "com.google.app.id",
+    ),
+)
+
 internal object ServiceCheckFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
     returnType = "V",

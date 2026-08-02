@@ -211,6 +211,10 @@ fun gmsCoreSupportPatch(
             GooglePlayUtilityFingerprint.method.returnEarly(0)
         }
 
+        // The bundled GooglePlayServicesUtilLight check returns an int ConnectionResult code.
+        // Returning SUCCESS (0) lets Photos finish account/profile initialization with GmsCore.
+        IsGooglePlayServicesAvailableFingerprint.methodOrNull?.returnEarly(0)
+
         // Set original and patched package names for extension to use.
         OriginalPackageNameExtensionFingerprint.method.returnEarly(fromPackageName)
 
