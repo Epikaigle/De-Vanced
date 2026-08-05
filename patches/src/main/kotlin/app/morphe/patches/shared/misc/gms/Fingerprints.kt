@@ -58,3 +58,11 @@ internal object OriginalPackageNameExtensionFingerprint : Fingerprint(
     returnType = "Ljava/lang/String;",
     parameters = listOf()
 )
+
+internal object MapViewInitFingerprint : Fingerprint(
+    definingClass = "Lcom/google/android/gms/maps/MapView;",
+    name = "c",
+    returnType = "V",
+    parameters = listOf(),
+)
+
