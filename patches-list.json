@@ -1,5 +1,5 @@
 {
-  "version": "1.0.4",
+  "version": "1.1.0",
   "appNames": {
     "com.amazon.mShop.android.shopping": "Amazon Shopping",
     "com.amazon.mp3": "Amazon Music",
@@ -2118,6 +2118,30 @@
           "packageName": "com.bandcamp.android",
           "description": null,
           "appIconColor": 6462121,
+          "targets": [
+            {
+              "version": "",
+              "experimental": false
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Rename shared permissions",
+      "description": "Rename certain permissions shared across Amazon apps. Applying this patch can fix installation errors, but can also break features in certain apps.",
+      "use": true,
+      "dependencies": [],
+      "compatiblePackages": {
+        "com.amazon.mp3": null
+      },
+      "compatibility": [
+        {
+          "name": "Amazon Music",
+          "packageName": "com.amazon.mp3",
+          "description": null,
+          "appIconColor": 16750848,
           "targets": [
             {
               "version": "",
