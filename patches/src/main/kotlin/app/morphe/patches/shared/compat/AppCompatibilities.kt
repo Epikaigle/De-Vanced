@@ -105,6 +105,15 @@ internal object AppCompatibilities {
         name = "Messenger",
         packageName = "com.facebook.orca",
         appIconColor = 0x0866FF,
+        targets = listOf(
+            AppTarget(
+                version = "551.0.0.48.62",
+                versionCodes = mapOf(
+                    SupportedAbi.ARMEABI_V7A to 340211298,
+                    SupportedAbi.ARM64_V8A to 340211239
+                )
+            )
+        )
     )
 
     val THREADS = Compatibility(
