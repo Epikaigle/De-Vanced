@@ -8,6 +8,7 @@ package app.morphe.patches.shared.compat
 
 import app.morphe.patcher.patch.AppTarget
 import app.morphe.patcher.patch.Compatibility
+import app.morphe.patcher.patch.SupportedAbi
 
 @Suppress("MemberVisibilityCanBePrivate")
 internal object AppCompatibilities {
@@ -89,19 +90,30 @@ internal object AppCompatibilities {
         name = "Facebook",
         packageName = "com.facebook.katana",
         appIconColor = 0x0866FF,
-    )
-
-    val FACEBOOK_490 = Compatibility(
-        name = "Facebook",
-        packageName = "com.facebook.katana",
-        appIconColor = 0x0866FF,
-        targets = listOf(AppTarget("490.0.0.63.82")),
+        targets = listOf(
+            AppTarget(
+                version = "490.0.0.63.82",
+                versionCodes = mapOf(
+                    SupportedAbi.ARMEABI_V7A to 457019986,
+                    SupportedAbi.ARM64_V8A to 457019914
+                )
+            )
+        )
     )
 
     val MESSENGER = Compatibility(
         name = "Messenger",
         packageName = "com.facebook.orca",
         appIconColor = 0x0866FF,
+        targets = listOf(
+            AppTarget(
+                version = "551.0.0.48.62",
+                versionCodes = mapOf(
+                    SupportedAbi.ARMEABI_V7A to 340211298,
+                    SupportedAbi.ARM64_V8A to 340211239
+                )
+            )
+        )
     )
 
     val THREADS = Compatibility(

@@ -95,7 +95,7 @@ These patches are designed to work with [Morphe](https://morphe.software). To bu
 2. Run the Gradle build:
 
 ```bash
-./gradlew build
+./gradlew buildAndroid
 ```
 
 ---
