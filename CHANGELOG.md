@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/RookieEnough/De-Vanced/compare/v1.1.0...v1.1.1) (2026-08-12)
+
+### 🐛 Bug Fixes
+
+* **Facebook:** Fix version to last known version that patches and works correctly ([133a0e7](https://github.com/RookieEnough/De-Vanced/commit/133a0e77985d2b18b387e297e6af60c5c6d59671))
+* **Messenger:** Fix version to last known version that patches and works correctly ([4f5edef](https://github.com/RookieEnough/De-Vanced/commit/4f5edef137a687f8c504f6edcd23584cdc184cde))
+
 ## [1.1.1-dev.1](https://github.com/RookieEnough/De-Vanced/compare/v1.1.0...v1.1.1-dev.1) (2026-08-11)
 
 ### 🐛 Bug Fixes
