@@ -1,3 +1,9 @@
+## [1.2.0](https://github.com/RookieEnough/De-Vanced/compare/v1.1.1...v1.2.0) (2026-08-12)
+
+### ✨ New Features
+
+* remove outdated apps maintained in other repos ([#94](https://github.com/RookieEnough/De-Vanced/issues/94)) ([e554c2b](https://github.com/RookieEnough/De-Vanced/commit/e554c2b5daeeaccd77279b777a6e5d32388bfdc6))
+
 ## [1.1.1](https://github.com/RookieEnough/De-Vanced/compare/v1.1.0...v1.1.1) (2026-08-12)
 
 ### 🐛 Bug Fixes

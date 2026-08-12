@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "patches": [
     {
       "name": "Add 'Give Kudos' button to 'Group Activity'",
@@ -1222,7 +1222,7 @@
         {
           "key": "compressionQuality",
           "title": "Compression quality (percent)",
-          "description": "This is used as the JPEG quality setting (\u2264 100).",
+          "description": "This is used as the JPEG quality setting (≤ 100).",
           "required": false,
           "type": "kotlin.Int",
           "default": null,
@@ -1231,7 +1231,7 @@
         {
           "key": "maxDuration",
           "title": "Max duration (seconds)",
-          "description": "The maximum length (\u2264 3600) of a video before it gets trimmed.",
+          "description": "The maximum length (≤ 3600) of a video before it gets trimmed.",
           "required": false,
           "type": "kotlin.Long",
           "default": null,
@@ -1240,7 +1240,7 @@
         {
           "key": "maxSize",
           "title": "Max size (pixels)",
-          "description": "The image gets resized so that the smaller dimension (width/height) does not exceed this value (\u2264 10000).",
+          "description": "The image gets resized so that the smaller dimension (width/height) does not exceed this value (≤ 10000).",
           "required": false,
           "type": "kotlin.Int",
           "default": null,
