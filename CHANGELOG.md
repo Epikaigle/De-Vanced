@@ -1,3 +1,9 @@
+## [1.2.1-dev.1](https://github.com/RookieEnough/De-Vanced/compare/v1.2.0...v1.2.1-dev.1) (2026-08-12)
+
+### 🐛 Bug Fixes
+
+* **Messenger:** Change recommended app version to `573.0.0.44.88` ([b58dc31](https://github.com/RookieEnough/De-Vanced/commit/b58dc314f17c1f826fc198486fe3fbeb249e8daf))
+
 ## [1.2.0](https://github.com/RookieEnough/De-Vanced/compare/v1.1.1...v1.2.0) (2026-08-12)
 
 ### ✨ New Features
