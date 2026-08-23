@@ -1,3 +1,9 @@
+## [1.2.3-dev.1](https://github.com/RookieEnough/De-Vanced/compare/v1.2.2...v1.2.3-dev.1) (2026-08-23)
+
+### 🐛 Bug Fixes
+
+* **Google Photos:** Clone app-owned permissions ([5e13642](https://github.com/RookieEnough/De-Vanced/commit/5e136425b7c1923d8180d22c04518adb479f4558))
+
 ## [1.2.2](https://github.com/RookieEnough/De-Vanced/compare/v1.2.1...v1.2.2) (2026-08-18)
 
 ### 🐛 Bug Fixes
