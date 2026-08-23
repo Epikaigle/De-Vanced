@@ -1,3 +1,9 @@
+## [1.3.0-dev.1](https://github.com/RookieEnough/De-Vanced/compare/v1.2.3-dev.1...v1.3.0-dev.1) (2026-08-23)
+
+### ✨ New Features
+
+* **Pixiv:** Add `Remove popular search time limit` patch ([#108](https://github.com/RookieEnough/De-Vanced/issues/108)) ([ddd7d78](https://github.com/RookieEnough/De-Vanced/commit/ddd7d78210cfe240fd1fc09735041b0930d8df12))
+
 ## [1.2.3-dev.1](https://github.com/RookieEnough/De-Vanced/compare/v1.2.2...v1.2.3-dev.1) (2026-08-23)
 
 ### 🐛 Bug Fixes
