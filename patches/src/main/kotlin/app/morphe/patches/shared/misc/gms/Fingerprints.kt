@@ -5,7 +5,9 @@
 package app.morphe.patches.shared.misc.gms
 
 import app.morphe.patcher.Fingerprint
+import app.morphe.util.getReference
 import com.android.tools.smali.dexlib2.AccessFlags
+import com.android.tools.smali.dexlib2.iface.reference.MethodReference
 
 internal object GooglePlayUtilityFingerprint : Fingerprint(
     accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.STATIC),
@@ -61,8 +63,19 @@ internal object OriginalPackageNameExtensionFingerprint : Fingerprint(
 
 internal object MapViewInitFingerprint : Fingerprint(
     definingClass = "Lcom/google/android/gms/maps/MapView;",
-    name = "c",
+    accessFlags = listOf(AccessFlags.PUBLIC, AccessFlags.FINAL),
     returnType = "V",
     parameters = listOf(),
+    custom = { method, _ ->
+        val references = method.implementation?.instructions
+            ?.mapNotNull { it.getReference<MethodReference>() }
+            .orEmpty()
+
+        references.any {
+            it.definingClass == "Landroid/os/StrictMode;" && it.name == "getThreadPolicy"
+        } && references.any {
+            it.definingClass == "Landroid/os/StrictMode;" && it.name == "setThreadPolicy"
+        }
+    },
 )
 
