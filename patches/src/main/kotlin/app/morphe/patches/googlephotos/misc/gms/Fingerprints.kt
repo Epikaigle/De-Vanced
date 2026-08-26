@@ -14,3 +14,18 @@ internal object HomeActivityOnCreateFingerprint : Fingerprint(
     parameters = listOf("Landroid/os/Bundle;"),
 )
 
+/**
+ * Matches GooglePlayServicesUtilLight.isGooglePlayServicesAvailable(Context, int).
+ *
+ * The bundled check rejects GmsCore's non-Google signature with SERVICE_INVALID even after
+ * account authentication succeeds. The strings are stable identifiers and avoid relying on
+ * obfuscated method names.
+ */
+internal object IsGooglePlayServicesAvailableFingerprint : Fingerprint(
+    returnType = "I",
+    parameters = listOf("L", "I"),
+    strings = listOf(
+        "com.google.android.gms.version",
+        "com.google.app.id",
+    ),
+)
