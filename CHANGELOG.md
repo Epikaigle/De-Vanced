@@ -1,3 +1,9 @@
+## [1.3.0-dev.3](https://github.com/RookieEnough/De-Vanced/compare/v1.3.0-dev.2...v1.3.0-dev.3) (2026-08-26)
+
+### 🚀 Updated App Support
+
+* **Strava:** Add support for `477.14` ([#113](https://github.com/RookieEnough/De-Vanced/issues/113)) ([4dd9025](https://github.com/RookieEnough/De-Vanced/commit/4dd902544736a03a3ced48c48a74f2ed7026bea2))
+
 ## [1.3.0-dev.2](https://github.com/RookieEnough/De-Vanced/compare/v1.3.0-dev.1...v1.3.0-dev.2) (2026-08-26)
 
 ### ✨ New Features
