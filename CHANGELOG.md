@@ -1,3 +1,9 @@
+## [1.3.0-dev.2](https://github.com/RookieEnough/De-Vanced/compare/v1.3.0-dev.1...v1.3.0-dev.2) (2026-08-26)
+
+### ✨ New Features
+
+* **Strava:** Add route export patch for GPX and TCX files ([#112](https://github.com/RookieEnough/De-Vanced/issues/112)) ([fbe54e5](https://github.com/RookieEnough/De-Vanced/commit/fbe54e5b8967eab18fd19b7f4bb7b04ceb446053))
+
 ## [1.3.0-dev.1](https://github.com/RookieEnough/De-Vanced/compare/v1.2.3-dev.1...v1.3.0-dev.1) (2026-08-23)
 
 ### ✨ New Features
