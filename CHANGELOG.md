@@ -1,3 +1,9 @@
+## [1.3.0-dev.4](https://github.com/RookieEnough/De-Vanced/compare/v1.3.0-dev.3...v1.3.0-dev.4) (2026-08-27)
+
+### 🐛 Bug Fixes
+
+* **Google Photos:** Improve OneGoogle avatar support with GmsCore ([#114](https://github.com/RookieEnough/De-Vanced/issues/114)) ([267c89f](https://github.com/RookieEnough/De-Vanced/commit/267c89fb72334ab2b2e077b60ca3a770a8389461))
+
 ## [1.3.0-dev.3](https://github.com/RookieEnough/De-Vanced/compare/v1.3.0-dev.2...v1.3.0-dev.3) (2026-08-26)
 
 ### 🚀 Updated App Support
