@@ -1,3 +1,9 @@
+## [1.3.0-dev.5](https://github.com/RookieEnough/De-Vanced/compare/v1.3.0-dev.4...v1.3.0-dev.5) (2026-08-29)
+
+### ✨ New Features
+
+* **Strava:** Add `Add activity export` patch ([#117](https://github.com/RookieEnough/De-Vanced/issues/117)) ([ba5d516](https://github.com/RookieEnough/De-Vanced/commit/ba5d516e7c976c3ed6e676c81c950141c2f4d3aa))
+
 ## [1.3.0-dev.4](https://github.com/RookieEnough/De-Vanced/compare/v1.3.0-dev.3...v1.3.0-dev.4) (2026-08-27)
 
 ### 🐛 Bug Fixes
