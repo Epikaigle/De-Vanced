@@ -1,3 +1,9 @@
+## [1.3.0-dev.6](https://github.com/RookieEnough/De-Vanced/compare/v1.3.0-dev.5...v1.3.0-dev.6) (2026-08-30)
+
+### 🐛 Bug Fixes
+
+* **Google Photos:** Handle GmsCore avatar auth consent ([#118](https://github.com/RookieEnough/De-Vanced/issues/118)) ([473b2f8](https://github.com/RookieEnough/De-Vanced/commit/473b2f8bc709958db98dff8d7e398584a093200e))
+
 ## [1.3.0-dev.5](https://github.com/RookieEnough/De-Vanced/compare/v1.3.0-dev.4...v1.3.0-dev.5) (2026-08-29)
 
 ### ✨ New Features
