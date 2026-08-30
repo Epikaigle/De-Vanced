@@ -153,18 +153,11 @@ public class GmsCoreSupportPatch {
             }
 
             // Google Photos' current OneGoogle account UI asks newer Play Services APIs for the
-            // profile image. Keep this compatibility bridge strictly scoped to Photos so shared
-            // GmsCore users are unaffected even if they expose similar OneGoogle resources.
+            // profile image. Keep this compatibility bridge strictly scoped to Photos. The bridge
+            // performs its own tolerant resource discovery, so installation must not depend on a
+            // single OneGoogle resource ID that may be renamed between Photos versions.
             if (GOOGLE_PHOTOS_PACKAGE_NAME.equals(getOriginalPackageName())) {
-                int avatarViewId = context.getResources().getIdentifier(
-                        "og_apd_internal_image_view", "id", context.getPackageName());
-                if (avatarViewId == 0) {
-                    avatarViewId = context.getResources().getIdentifier(
-                            "og_apd_internal_image_view", "id", GOOGLE_PHOTOS_PACKAGE_NAME);
-                }
-                if (avatarViewId != 0) {
-                    GooglePhotosAccountAvatar.install(context);
-                }
+                GooglePhotosAccountAvatar.install(context);
             }
 
             // Check if GmsCore is whitelisted from battery optimizations.
