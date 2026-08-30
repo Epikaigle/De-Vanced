@@ -8,6 +8,7 @@ package app.morphe.extension.shared.patches;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.accounts.AccountManagerFuture;
+import android.accounts.OperationCanceledException;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -44,6 +45,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -88,6 +90,8 @@ final class GooglePhotosAccountAvatar {
             "morphe_google_photos_account_avatar";
 
     private static final AtomicReference<String> FETCHING_ACCOUNT = new AtomicReference<>();
+    private static final Set<String> CANCELLED_AUTH_ACCOUNTS =
+            Collections.synchronizedSet(new HashSet<>());
     private static final AtomicBoolean WINDOW_SCAN_ERROR_LOGGED = new AtomicBoolean();
     private static final Map<ImageView, String> SCHEDULED_TOOLBAR_AVATARS = new WeakHashMap<>();
     private static final Map<View, String> SCHEDULED_ACCOUNT_SHEETS = new WeakHashMap<>();
@@ -289,61 +293,30 @@ final class GooglePhotosAccountAvatar {
 
     private static void requestProfileToken(Activity activity, View root, Account account) {
         final String accountName = account.name;
+        final String accountKey = accountName.toLowerCase(Locale.ROOT);
         if (avatar != null && sameAccount(accountName, avatarAccountName)) return;
+        if (CANCELLED_AUTH_ACCOUNTS.contains(accountKey)) return;
         if (!FETCHING_ACCOUNT.compareAndSet(null, accountName)) return;
 
         try {
             Logger.printInfo(() -> "Requesting the Google Photos avatar token");
 
             Bundle options = new Bundle();
-            options.putString("androidPackageName", activity.getPackageName());
-            AccountManagerFuture<Bundle> future = AccountManager.get(activity).getAuthToken(
+            options.putString(AccountManager.KEY_ANDROID_PACKAGE_NAME, activity.getPackageName());
+            AccountManager.get(activity).getAuthToken(
                     account,
                     PROFILE_TOKEN_TYPE,
                     options,
-                    false,
-                    null,
+                    activity,
+                    future -> handleProfileTokenResult(
+                            activity,
+                            root,
+                            accountName,
+                            accountKey,
+                            future
+                    ),
                     null
             );
-
-            Utils.runOnBackgroundThread(() -> {
-                boolean refreshDifferentAccount = false;
-                try {
-                    Bundle result = future.getResult();
-                    String token = result.getString(AccountManager.KEY_AUTHTOKEN);
-                    if (token == null || token.isEmpty()) {
-                        throw new IllegalStateException("GmsCore returned no profile token");
-                    }
-
-                    Bitmap downloadedAvatar = downloadAvatar(token);
-                    if (downloadedAvatar == null) {
-                        throw new IllegalStateException("Google user-info returned no avatar");
-                    }
-
-                    writeCachedAvatar(activity, accountName, downloadedAvatar);
-
-                    if (sameAccount(accountName, selectedAccountName)) {
-                        avatar = downloadedAvatar;
-                        avatarAccountName = accountName;
-                        Logger.printInfo(() -> "Google Photos account avatar loaded");
-                        Utils.runOnMainThread(() -> applyAvatar(activity, root));
-                    } else {
-                        refreshDifferentAccount = selectedAccountName != null;
-                    }
-                } catch (Exception exception) {
-                    Logger.printException(
-                            () -> "Could not load the Google Photos account avatar",
-                            exception
-                    );
-                    refreshDifferentAccount = selectedAccountName != null
-                            && !sameAccount(accountName, selectedAccountName);
-                } finally {
-                    FETCHING_ACCOUNT.compareAndSet(accountName, null);
-                    if (refreshDifferentAccount) {
-                        Utils.runOnMainThread(() -> refresh(activity, root));
-                    }
-                }
-            });
         } catch (Exception exception) {
             FETCHING_ACCOUNT.compareAndSet(accountName, null);
             Logger.printException(
@@ -351,6 +324,76 @@ final class GooglePhotosAccountAvatar {
                     exception
             );
         }
+    }
+
+    private static void handleProfileTokenResult(
+            Activity activity,
+            View root,
+            String accountName,
+            String accountKey,
+            AccountManagerFuture<Bundle> future
+    ) {
+        final String token;
+        try {
+            Bundle result = future.getResult();
+            token = result.getString(AccountManager.KEY_AUTHTOKEN);
+            if (token == null || token.isEmpty()) {
+                throw new IllegalStateException("GmsCore returned no profile token");
+            }
+            CANCELLED_AUTH_ACCOUNTS.remove(accountKey);
+        } catch (OperationCanceledException exception) {
+            // Morphe returns a consent Intent when this OAuth service has not been permitted yet.
+            // The Activity overload above lets AccountManager launch it and resume this callback.
+            // If the user denies/cancels, suppress repeated prompts until the process restarts.
+            CANCELLED_AUTH_ACCOUNTS.add(accountKey);
+            FETCHING_ACCOUNT.compareAndSet(accountName, null);
+            Logger.printInfo(() -> "Google Photos avatar permission was not granted");
+            return;
+        } catch (Exception exception) {
+            FETCHING_ACCOUNT.compareAndSet(accountName, null);
+            Logger.printException(
+                    () -> "Could not obtain the Google Photos profile token",
+                    exception
+            );
+            if (selectedAccountName != null
+                    && !sameAccount(accountName, selectedAccountName)) {
+                Utils.runOnMainThread(() -> refresh(activity, root));
+            }
+            return;
+        }
+
+        Utils.runOnBackgroundThread(() -> {
+            boolean refreshDifferentAccount = false;
+            try {
+                Bitmap downloadedAvatar = downloadAvatar(token);
+                if (downloadedAvatar == null) {
+                    throw new IllegalStateException("Google user-info returned no avatar");
+                }
+
+                writeCachedAvatar(activity, accountName, downloadedAvatar);
+
+                if (sameAccount(accountName, selectedAccountName)) {
+                    avatar = downloadedAvatar;
+                    avatarAccountName = accountName;
+                    Logger.printInfo(() -> "Google Photos account avatar loaded");
+                    Utils.runOnMainThread(() -> applyAvatar(activity, root));
+                } else {
+                    refreshDifferentAccount = selectedAccountName != null;
+                }
+            } catch (Exception exception) {
+                Logger.printException(
+                        () -> "Could not load the Google Photos account avatar",
+                        exception
+                );
+                refreshDifferentAccount = selectedAccountName != null
+                        && !sameAccount(accountName, selectedAccountName);
+            } finally {
+                FETCHING_ACCOUNT.compareAndSet(accountName, null);
+                if (refreshDifferentAccount) {
+                    Utils.runOnMainThread(() -> refresh(activity, root));
+                }
+            }
+        });
     }
 
     @Nullable
