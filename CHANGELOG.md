@@ -1,3 +1,21 @@
+## [1.3.0](https://github.com/RookieEnough/De-Vanced/compare/v1.2.2...v1.3.0) (2026-08-31)
+
+### 🐛 Bug Fixes
+
+* **Google Photos:** Clone app-owned permissions ([5e13642](https://github.com/RookieEnough/De-Vanced/commit/5e136425b7c1923d8180d22c04518adb479f4558))
+* **Google Photos:** Handle GmsCore avatar auth consent ([#118](https://github.com/RookieEnough/De-Vanced/issues/118)) ([473b2f8](https://github.com/RookieEnough/De-Vanced/commit/473b2f8bc709958db98dff8d7e398584a093200e))
+* **Google Photos:** Improve OneGoogle avatar support with GmsCore ([#114](https://github.com/RookieEnough/De-Vanced/issues/114)) ([267c89f](https://github.com/RookieEnough/De-Vanced/commit/267c89fb72334ab2b2e077b60ca3a770a8389461))
+
+### ✨ New Features
+
+* **Pixiv:** Add `Remove popular search time limit` patch ([#108](https://github.com/RookieEnough/De-Vanced/issues/108)) ([ddd7d78](https://github.com/RookieEnough/De-Vanced/commit/ddd7d78210cfe240fd1fc09735041b0930d8df12))
+* **Strava:** Add `Add activity export` patch ([#117](https://github.com/RookieEnough/De-Vanced/issues/117)) ([ba5d516](https://github.com/RookieEnough/De-Vanced/commit/ba5d516e7c976c3ed6e676c81c950141c2f4d3aa))
+* **Strava:** Add route export patch for GPX and TCX files ([#112](https://github.com/RookieEnough/De-Vanced/issues/112)) ([fbe54e5](https://github.com/RookieEnough/De-Vanced/commit/fbe54e5b8967eab18fd19b7f4bb7b04ceb446053))
+
+### 🚀 Updated App Support
+
+* **Strava:** Add support for `477.14` ([#113](https://github.com/RookieEnough/De-Vanced/issues/113)) ([4dd9025](https://github.com/RookieEnough/De-Vanced/commit/4dd902544736a03a3ced48c48a74f2ed7026bea2))
+
 ## [1.3.0-dev.6](https://github.com/RookieEnough/De-Vanced/compare/v1.3.0-dev.5...v1.3.0-dev.6) (2026-08-30)
 
 ### 🐛 Bug Fixes
